@@ -22,7 +22,7 @@ public class GetHubListServlet extends HttpServlet {
         String type= request.getParameter("type");
         String size= request.getParameter("size"); //每页大小
         String tag=request.getParameter("tag");
-        String userId=request.getParameter("userId");
+        String userID=request.getParameter("userId");
 
         int currentPage=0; //当前页码，如果不传递，则默认为第一页
         if (page!=null&&page.length()>0&&Integer.parseInt(page)>0){
@@ -39,7 +39,7 @@ public class GetHubListServlet extends HttpServlet {
         }
 
         HubService service=new HubService();
-        PageBean<Hub> pb = service.pageQuery(currentPage,type,pageSize,tag,userId);
+        PageBean<Hub> pb = service.pageQuery(currentPage,type,pageSize,tag,userID);
 
         ResultInfo info=new ResultInfo();
         if (pb.getList()!=null&&pb.getList().size()!=0){

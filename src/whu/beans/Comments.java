@@ -6,35 +6,35 @@ import java.io.Serializable;
  * 评论实体类
  */
 public class Comments implements Serializable {
-    private int commentId;
-    private int articleId;
-    private int userId;
+    private int commentID;
+    private int articleID;
+    private int userID;
     private String content;
-    private int parentId;
+    private int parentID;
 
 
-    public int getCommentId() {
-        return commentId;
+    public int getCommentID() {
+        return commentID;
     }
 
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
     }
 
-    public int getArticleId() {
-        return articleId;
+    public int getArticleID() {
+        return articleID;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
+    public void setArticleID(int articleID) {
+        this.articleID = articleID;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getContent() {
@@ -45,22 +45,22 @@ public class Comments implements Serializable {
         this.content = content;
     }
 
-    public int getParentId() {
-        return parentId;
+    public int getParentID() {
+        return parentID;
     }
 
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
+    public void setParentID(int parentID) {
+        this.parentID = parentID;
     }
 
     @Override
     public String toString() {
         return "Comments{" +
-                "commentId=" + commentId +
-                ", articleId=" + articleId +
-                ", userId=" + userId +
+                "commentID=" + commentID +
+                ", articleID=" + articleID +
+                ", userID=" + userID +
                 ", content='" + content + '\'' +
-                ", parentId=" + parentId +
+                ", parentID=" + parentID +
                 '}';
     }
 }

@@ -21,14 +21,14 @@ public class ThumbUpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User u=new User();
-        u.setUserId(1);
+        u.setUserID(1);
         session.setAttribute("user",u);
         User user =(User) session.getAttribute("user");
-        int id=user.getUserId();
-        String articleId = request.getParameter("articleId");
+        int id=user.getUserID();
+        String articleID = request.getParameter("articleId");
         ArticleService service=new ArticleService();
         ResultInfo info=new ResultInfo();
-        boolean flag=service.thumbUp(id,articleId);
+        boolean flag=service.thumbUp(id,articleID);
         if (flag){
             info.setCode(1);
             info.setMsg("点赞成功");

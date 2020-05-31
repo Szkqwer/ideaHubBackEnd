@@ -46,7 +46,6 @@ public class ArticleDao {
         }
 
 
-
         try {
             pb.setList(template.query(sql,new BeanPropertyRowMapper<Article>(Article.class),params.toArray()));
         } catch (DataAccessException e) {
@@ -56,14 +55,34 @@ public class ArticleDao {
         return pb;
     }
 
-    public Article findArticleById(int articleId) {
+    public Article findArticleById(int articleID) {
         Article article=null;
         String sql="select * from article where articleID = ?";
         try {
-            article=template.queryForObject(sql,new BeanPropertyRowMapper<Article>(Article.class),articleId);
+            article=template.queryForObject(sql,new BeanPropertyRowMapper<Article>(Article.class),articleID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return article;
+    }
+
+    public int thumbUp(int articleID,int id) {
+        Article article=null;
+        String sql="update article set thumbUpNum = thumbUpNum+1 where articleID = ?";
+        String sql1="insert user_likes_article(userID,articleID) values(?, ?)";
+        int num=0;
+        try {
+            num=template.update(sql1,id,articleID);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        if (num!=0){
+            try {
+                template.update(sql,articleID);
+            } catch (DataAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return num;
     }
 }

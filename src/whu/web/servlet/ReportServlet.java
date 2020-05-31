@@ -18,12 +18,12 @@ import java.io.IOException;
 public class ReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String hubId=request.getParameter("hubId");
-        String userId = request.getParameter("userId");
+        String hubID=request.getParameter("hubId");
+        String userID = request.getParameter("userId");
         String report =request.getParameter("report");
 
         HubService service=new HubService();
-        boolean hub=service.report(hubId,userId,report);
+        boolean hub=service.report(hubID,userID,report);
         ResultInfo info=new ResultInfo();
         if (true){
             info.setCode(1);

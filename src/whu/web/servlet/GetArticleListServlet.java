@@ -42,7 +42,6 @@ public class GetArticleListServlet extends HttpServlet {
 
         ResultInfo info=new ResultInfo();
         if (pb.getList()!=null&&pb.getList().size()!=0){
-            //用户存在
             info.setCode(1);
             info.setMsg("获取文章列表成功");
             info.setCount(pb.getCount());

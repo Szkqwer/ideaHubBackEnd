@@ -16,10 +16,10 @@ import java.io.IOException;
 public class GetPersonInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String userId = request.getParameter("userId");
+        String userID = request.getParameter("userId");
 
         UserService service=new UserService();
-        User user=service.getPersonalInfo(userId);
+        User user=service.getPersonalInfo(userID);
         ResultInfo info=new ResultInfo();
         if (true){
             info.setCode(1);

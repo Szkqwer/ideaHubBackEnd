@@ -12,7 +12,7 @@ public class CommentsDao {
         String sql="insert into comments(articleID, userID, content, parentID) values( ? , ? , ? , ?)";
         int num= 0;
         try {
-            num = template.update(sql,comments.getArticleId(),comments.getUserId(),comments.getContent(),comments.getParentId());
+            num = template.update(sql,comments.getArticleID(),comments.getUserID(),comments.getContent(),comments.getParentID());
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

@@ -18,11 +18,11 @@ public class MarkArticleServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String articleId = request.getParameter("articleId");
-        String userId = request.getParameter("userId");
+        String articleID = request.getParameter("articleId");
+        String userID = request.getParameter("userId");
         UserService service=new UserService();
         ResultInfo info=new ResultInfo();
-        boolean flag=service.markArticle(articleId,userId);
+        boolean flag=service.markArticle(articleID,userID);
         if (flag){
             info.setCode(1);
             info.setMsg("收藏成功");

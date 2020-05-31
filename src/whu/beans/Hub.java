@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Hub implements Serializable {
-    private int hubId;
+    private int hubID;
     private String hubName;
     private String hubLeader;
     private int memberCount;
@@ -30,12 +30,12 @@ public class Hub implements Serializable {
         this.administrators = administrators;
     }
 
-    public int getHubId() {
-        return hubId;
+    public int getHubID() {
+        return hubID;
     }
 
-    public void setHubId(int hubId) {
-        this.hubId = hubId;
+    public void setHubID(int hubID) {
+        this.hubID = hubID;
     }
 
     public String getHubName() {
@@ -89,7 +89,7 @@ public class Hub implements Serializable {
 
         return "Hub{" +
                 "name=" + hubName + '\''+
-                ", hubId='" + hubId  +
+                ", hubID='" + hubID  +
                 ", hubLeader='" + hubLeader + '\'' +
                 ", setupTime='" + setupTime  +
                 ", memberCount='" + memberCount  +

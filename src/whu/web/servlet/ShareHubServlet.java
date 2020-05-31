@@ -18,12 +18,12 @@ public class ShareHubServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String hubId = request.getParameter("hubId");
-        String targetId = request.getParameter("targetId");
+        String hubID = request.getParameter("hubId");
+        String targetID = request.getParameter("targetId");
         String sign = request.getParameter("sign");
         HubService service = new HubService();
         ResultInfo info = new ResultInfo();
-        boolean flag = service.shareHub(hubId, targetId, Integer.parseInt(sign));
+        boolean flag = service.shareHub(hubID, targetID, Integer.parseInt(sign));
         if (flag) {
             info.setCode(1);
             info.setMsg("分享成功");

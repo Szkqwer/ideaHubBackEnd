@@ -1,31 +1,25 @@
 package whu.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 用户实体类
  */
 public class User implements Serializable {
-    private int userID;//用户id
-    private String userName;//用户名，账号
-    private String password;//密码
-    private String createdProject;
-    private String joinedProjects;
-    private String friends;//手机号
-    private String points;//邮箱
+    private int userID;
+    private String nickName;
+    private String avatarPath;
+    private String sex;
+    private String slogan;
+    private int thumbUpNum;
+    private int fansNum;
+    private int ViewNum;
+    private int level;
+    private List<Integer> likes;
+    private List<Integer> marksArtic;
+    private List<Integer> marksHub;
 
-    public User() {
-    }
-
-    public User(int userID, String userName, String password, String createdProject, String joinedProjects, String friends, String points) {
-        this.userID = userID;
-        this.userName = userName;
-        this.password = password;
-        this.createdProject = createdProject;
-        this.joinedProjects = joinedProjects;
-        this.friends = friends;
-        this.points = points;
-    }
 
     public int getUserID() {
         return userID;
@@ -35,64 +29,109 @@ public class User implements Serializable {
         this.userID = userID;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 
-    public String getCreatedProject() {
-        return createdProject;
+    public String getSex() {
+        return sex;
     }
 
-    public void setCreatedProject(String createdProject) {
-        this.createdProject = createdProject;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getJoinedProjects() {
-        return joinedProjects;
+    public String getSlogan() {
+        return slogan;
     }
 
-    public void setJoinedProjects(String joinedProjects) {
-        this.joinedProjects = joinedProjects;
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
     }
 
-    public String getFriends() {
-        return friends;
+    public int getThumbUpNum() {
+        return thumbUpNum;
     }
 
-    public void setFriends(String friends) {
-        this.friends = friends;
+    public void setThumbUpNum(int thumbUpNum) {
+        this.thumbUpNum = thumbUpNum;
     }
 
-    public String getPoints() {
-        return points;
+    public int getFansNum() {
+        return fansNum;
     }
 
-    public void setPoints(String points) {
-        this.points = points;
+    public void setFansNum(int fansNum) {
+        this.fansNum = fansNum;
+    }
+
+    public int getViewNum() {
+        return ViewNum;
+    }
+
+    public void setViewNum(int viewNum) {
+        ViewNum = viewNum;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public List<Integer> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Integer> likes) {
+        this.likes = likes;
+    }
+
+    public List<Integer> getMarksArtic() {
+        return marksArtic;
+    }
+
+    public void setMarksArtic(List<Integer> marksArtic) {
+        this.marksArtic = marksArtic;
+    }
+
+    public List<Integer> getMarksHub() {
+        return marksHub;
+    }
+
+    public void setMarksHub(List<Integer> marksHub) {
+        this.marksHub = marksHub;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "userID=" + userID +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", createdProject='" + createdProject + '\'' +
-                ", joinedProjects='" + joinedProjects + '\'' +
-                ", friends='" + friends + '\'' +
-                ", points='" + points + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", avatarPath='" + avatarPath + '\'' +
+                ", sex='" + sex + '\'' +
+                ", slogan='" + slogan + '\'' +
+                ", thumbUpNum=" + thumbUpNum +
+                ", fansNum=" + fansNum +
+                ", ViewNum=" + ViewNum +
+                ", level=" + level +
+                ", likes=" + likes +
+                ", marksArtic=" + marksArtic +
+                ", marksHub=" + marksHub +
                 '}';
     }
 }

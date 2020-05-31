@@ -15,11 +15,11 @@ import java.io.IOException;
 @WebServlet("/homePage/editLikes")
 public class EditLikesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter("userId");
-        String articleId = request.getParameter("articleId");
+        String userID = request.getParameter("userId");
+        String articleID = request.getParameter("articleId");
 
         UserService service=new UserService();
-        boolean flag=service.deleteArticle(userId,articleId);
+        boolean flag=service.deleteArticle(userID,articleID);
         ResultInfo info=new ResultInfo();
         if (flag){
             info.setCode(1);

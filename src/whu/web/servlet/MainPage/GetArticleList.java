@@ -1,7 +1,7 @@
 package whu.web.servlet.MainPage;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 import whu.beans.Article;
 import whu.beans.PageBean;
 import whu.beans.ResultInfo;
@@ -22,7 +22,7 @@ import java.io.IOException;
 
 @WebServlet("/mainPage/getArticleList")
 public class GetArticleList extends HttpServlet{
-    protected void doPost(@NotNull HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page= request.getParameter("page"); //当前页数
         String type= request.getParameter("type");
         String size= request.getParameter("size"); //每页大小

@@ -17,11 +17,11 @@ import java.io.IOException;
 @WebServlet("/homePage/editMarks")
 public class EditMarksServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userId = request.getParameter("userId");
-        String editCircleId = request.getParameter("editCircleId");
+        String userID = request.getParameter("userId");
+        String editCircleID = request.getParameter("editCircleId");
 
         UserService service=new UserService();
-        boolean flag =service.deleteMarks(userId,editCircleId);//删除用户
+        boolean flag =service.deleteMarks(userID,editCircleID);//删除用户
 
 
         ResultInfo info=new ResultInfo();

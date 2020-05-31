@@ -17,10 +17,10 @@ import java.io.IOException;
 @WebServlet("/hubPage/getHubDetail")
 public class GetHubDetailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String hubId = request.getParameter("hubId");
+        String hubID = request.getParameter("hubId");
         HubService service=new HubService();
         ResultInfo info=new ResultInfo();
-        Hub hub =service.getHubDetail(hubId);
+        Hub hub =service.getHubDetail(hubID);
         System.out.println(hub.getSetupTime());
         if (hub!=null){
             //用户存在

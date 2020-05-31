@@ -15,10 +15,24 @@ public class ArticleService {
         return dao.findByPage(type,start,pageSize);
     }
 
-    public Article findArticleById(String articleId) {
-        if (articleId!=null&&articleId.length()!=0&Integer.parseInt(articleId)>0){
-            return dao.findArticleById(Integer.parseInt(articleId));
+    public Article findArticleById(String articleID) {
+        if (articleID!=null&&articleID.length()!=0&Integer.parseInt(articleID)>0){
+            return dao.findArticleById(Integer.parseInt(articleID));
         }
         return null;
+    }
+
+    public boolean thumbUp(int id,String articleID) {
+        boolean flag=false;
+        int num=0;
+        try {
+            num=dao.thumbUp(Integer.parseInt(articleID),id);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        if (num==1){
+            flag=true;
+        }
+        return flag;
     }
 }

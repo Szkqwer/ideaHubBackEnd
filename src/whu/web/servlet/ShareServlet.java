@@ -14,16 +14,16 @@ import java.io.IOException;
 @WebServlet("/homePage/shareArticle")
 public class ShareServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String articleId = request.getParameter("articleId");
-        String userId = request.getParameter("userId");
-        String targetUserId = request.getParameter("targetUserId");
-        String targetCircleId = request.getParameter("targetCircleId");
+        String articleID = request.getParameter("articleId");
+        String userID = request.getParameter("userId");
+        String targetUserID = request.getParameter("targetUserId");
+        String targetCircleID = request.getParameter("targetCircleId");
         UserService service=new UserService();
         boolean flag;
-        if (targetUserId==null||targetUserId.length()==0){
-            flag=service.shareArticle(articleId,userId,targetCircleId,0);
+        if (targetUserID==null||targetUserID.length()==0){
+            flag=service.shareArticle(articleID,userID,targetCircleID,0);
         }else {
-            flag=service.shareArticle(articleId,userId,targetUserId,1);
+            flag=service.shareArticle(articleID,userID,targetUserID,1);
         }
         ResultInfo info=new ResultInfo();
         if (flag){

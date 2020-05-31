@@ -24,11 +24,11 @@ public class JoinRequestServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String articleId = request.getParameter("hubId");
-        String userId = request.getParameter("userId");
+        String articleID = request.getParameter("hubId");
+        String userID = request.getParameter("userId");
         HubService service = new HubService();
         ResultInfo info = new ResultInfo();
-        boolean flag = service.joinRequest(articleId, userId);
+        boolean flag = service.joinRequest(articleID, userID);
         if (flag) {
             info.setCode(1);
             info.setMsg("申请已发送");

@@ -18,10 +18,10 @@ import java.io.IOException;
 @WebServlet("/homePage/getArticleDetail")
 public class GetArticleByIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String articleId = request.getParameter("articleId");
+        String articleID = request.getParameter("articleId");
         ArticleService service=new ArticleService();
         ResultInfo info=new ResultInfo();
-        Article article =service.findArticleById(articleId);
+        Article article =service.findArticleById(articleID);
         System.out.println(article.getUpdateTime());
         if (article!=null){
             //用户存在

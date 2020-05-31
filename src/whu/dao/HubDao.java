@@ -15,7 +15,7 @@ import java.util.List;
 public class HubDao {
     private JdbcTemplate template=new JdbcTemplate(JDBCUtils.getDataSource());
 
-    public PageBean findByPage(String type, int start, int pageSize, String tag, String userId) {
+    public PageBean findByPage(String type, int start, int pageSize, String tag, String userID) {
         //String sql="select * from article where tag=? limit ? , ?";
         String sql="select * from hub where 1=1 ";
         String sql1="select count(*) from hub where 1=1 ";
@@ -32,7 +32,7 @@ public class HubDao {
         params.add(start);
         params.add(pageSize);
         params.add(tag);
-        params.add(userId);
+        params.add(userID);
 
         sql=sb.toString();
 
@@ -59,8 +59,8 @@ public class HubDao {
 
         return pb;
     }
-    public Hub findHubById(int id){
-        String sql="select * from users where hubId = ?";
+    public Hub findHubByID(int id){
+        String sql="select * from users where hubID = ?";
         Hub u=null;
         try {
             u=template.queryForObject(sql,new BeanPropertyRowMapper<Hub>(Hub.class),id);
@@ -70,7 +70,7 @@ public class HubDao {
         return u;
     }
     public Hub getHubDetail(int id){
-        String sql="select * from hub where hubId = ?";
+        String sql="select * from hub where hubID = ?";
         Hub u=null;
         try {
             u=template.queryForObject(sql,new BeanPropertyRowMapper<Hub>(Hub.class),id);
@@ -80,12 +80,12 @@ public class HubDao {
         return u;
     }
 
-    public int joinRequest(int hubId,int userId){
+    public int joinRequest(int hubID,int userID){
         String sql;
-        sql="insert into user_join_hub(hubId,userID) values(?, ?)";
+        sql="insert into user_join_hub(hubID,userID) values(?, ?)";
         int num=0;
         try {
-            num=template.update(sql,hubId,userId);
+            num=template.update(sql,hubID,userID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -93,40 +93,40 @@ public class HubDao {
 
     }
 
-    public int report(int hubId,int userId,String report){
+    public int report(int hubID,int userID,String report){
         String sql;
-        sql="insert into user_report(hubId,userID,report) values(?, ?, ?)";
+        sql="insert into user_report(hubID,userID,report) values(?, ?, ?)";
         int num=0;
         try {
-            num=template.update(sql,hubId,userId,report);
+            num=template.update(sql,hubID,userID,report);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return num;
     }
 
-    public int markhub(int hubId,int userId){
+    public int markhub(int hubID,int userID){
         String sql;
-        sql="insert into user_mark_hub(hubId,userID) values(?, ?)";
+        sql="insert into user_mark_hub(hubID,userID) values(?, ?)";
         int num=0;
         try {
-            num=template.update(sql,hubId,userId);
+            num=template.update(sql,hubID,userID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return num;
     }
 
-    public int shareHub(int hubId, int targetId, int sign) {
+    public int shareHub(int hubID, int targetID, int sign) {
         String sql;
         if (sign==1){
-            sql="insert into user_share_hub(hubId, targetUserId) values(?, ?)";
+            sql="insert into user_share_hub(hubID, targetUserID) values(?, ?)";
         }else {
-            sql="insert into user_share_hub(hubId, targetCircleId) values(?, ?)";
+            sql="insert into user_share_hub(hubID, targetCircleID) values(?, ?)";
         }
         int num=0;
         try {
-            num=template.update(sql,hubId,targetId);
+            num=template.update(sql,hubID,targetID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

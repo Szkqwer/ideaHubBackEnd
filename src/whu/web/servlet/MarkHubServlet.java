@@ -19,11 +19,11 @@ public class MarkHubServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String hubId = request.getParameter("hubId");
-        String userId = request.getParameter("userId");
+        String hubID = request.getParameter("hubId");
+        String userID = request.getParameter("userId");
         HubService service=new HubService();
         ResultInfo info=new ResultInfo();
-        boolean flag=service.markhub(hubId,userId);
+        boolean flag=service.markhub(hubID,userID);
         if (flag){
             info.setCode(1);
             info.setMsg("收藏成功");
