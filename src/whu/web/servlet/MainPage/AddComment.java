@@ -56,7 +56,7 @@ public class AddComment extends HttpServlet{
                 info.setData(null);
             }else {
                 info.setCode(0);
-                info.setMsg("评论失败，数据库崩溃");
+                info.setMsg("评论失败，parentID不存在");
             }
         }else {
             info.setCode(0);

@@ -41,16 +41,16 @@ public class ReportArticle extends HttpServlet{
             UserReportArticleService UserReportArticleService = new UserReportArticleService();
             if(UserReportArticleService.addReport(userReportArticle)){
                 info.setCode(1);
-                info.setMsg("收藏成功");
+                info.setMsg("举报成功");
                 info.setCount(0);
                 info.setData(null);
             }else {
                 info.setCode(0);
-                info.setMsg("收藏失败，数据库崩溃");
+                info.setMsg("举报失败");
             }
         }else {
             info.setCode(0);
-            info.setMsg("评论失败，不存在该用户或内容为空或原评论已被删除");
+            info.setMsg("举报失败，不存在该用户或内容为空或原评论已被删除");
         }
         ObjectMapper mapper=new ObjectMapper();
         String json = mapper.writeValueAsString(info);
