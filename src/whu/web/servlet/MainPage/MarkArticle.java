@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -23,7 +24,11 @@ public class MarkArticle extends HttpServlet{
         // 将前端传递的参数剥离
         // request.getParameter此方法要求前端提交参数时的编码格式为application/x-www-form-urlencoded
         // 如果前端提交参数时的编码格式为application/json或multipart/form-data则不能被识别
-        String userID = req.getParameter("userId");
+//        String userID = req.getParameter("userId");
+        HttpSession session = req.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String userID=String.valueOf(tempUser.getUserID());
+
         String articleID = req.getParameter("articleId");
         // 查询用户
         UserService userService = new UserService();

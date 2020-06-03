@@ -10,9 +10,13 @@ import java.util.List;
 public class ArticleService {
     ArticleDao dao=new ArticleDao();
     public PageBean pageQuery(int currentPage, String type, int pageSize) {
-        List<Article> articleList=new ArrayList<>();
         int start=(currentPage-1)*pageSize;
         return dao.findByPage(type,start,pageSize);
+    }
+
+    public PageBean pageQuery(int userID,int currentPage, String type, int pageSize) {
+        int start=(currentPage-1)*pageSize;
+        return dao.findByPage(userID,type,start,pageSize);
     }
 
     public Article findArticleById(String articleID) {
@@ -34,5 +38,15 @@ public class ArticleService {
             flag=true;
         }
         return flag;
+    }
+
+    public PageBean<Article> getPublishListPageQuery(int userID, int currentPage, String type, int pageSize) {
+        int start=(currentPage-1)*pageSize;
+        return dao.getPublishListPageQuery(userID,type,start,pageSize);
+    }
+
+    public PageBean<Article> GetRecommendArticleListPageQuery(int currentPage, String type, int pageSize) {
+        int start=(currentPage-1)*pageSize;
+        return dao.GetRecommendArticleListPageQuery(type,start,pageSize);
     }
 }

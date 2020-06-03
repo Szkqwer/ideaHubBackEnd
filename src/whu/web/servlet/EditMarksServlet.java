@@ -2,6 +2,7 @@ package whu.web.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import whu.beans.ResultInfo;
+import whu.beans.User;
 import whu.service.UserService;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -17,7 +19,11 @@ import java.io.IOException;
 @WebServlet("/homePage/editMarks")
 public class EditMarksServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userID = request.getParameter("userId");
+//        String userID = request.getParameter("userId");
+        HttpSession session = request.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String userID=String.valueOf(tempUser.getUserID());
+
         String editCircleID = request.getParameter("editCircleId");
 
         UserService service=new UserService();

@@ -27,10 +27,11 @@ public class AddCommentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String articleID = request.getParameter("articleId");
-        String userID = request.getParameter("userId");
-        String parentID = request.getParameter("parentId");
-        String content = request.getParameter("content");
+
+        HttpSession session = request.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String userID=String.valueOf(tempUser.getUserID());
+
 
         Map<String, String[]> parameterMap = request.getParameterMap();
         Set<String> set = parameterMap.keySet();
@@ -48,7 +49,7 @@ public class AddCommentServlet extends HttpServlet {
 
         CommentsService service=new CommentsService();
         ResultInfo info=new ResultInfo();
-        boolean flag=service.addComment(comments);
+        boolean flag=service.addComment(comments,Integer.parseInt(userID));
         if (flag){
             info.setCode(1);
             info.setMsg("评论成功");

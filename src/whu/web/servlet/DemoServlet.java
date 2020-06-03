@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -17,7 +18,11 @@ import java.util.Map;
 @WebServlet("/DemoServlet")
 public class DemoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userID= request.getParameter("userID");
+//        String userID= request.getParameter("userID");
+        HttpSession session = request.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String userID=String.valueOf(tempUser.getUserID());
+
         UserService service=new UserService();
         User user = service.findUserById(userID);
 

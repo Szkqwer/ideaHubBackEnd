@@ -10,12 +10,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/homePage/editLikes")
 public class EditLikesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userID = request.getParameter("userId");
+//        String userID = request.getParameter("userId");
+        HttpSession session = request.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String userID=String.valueOf(tempUser.getUserID());
+
+
         String articleID = request.getParameter("articleId");
 
         UserService service=new UserService();

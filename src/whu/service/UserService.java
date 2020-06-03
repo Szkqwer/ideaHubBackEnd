@@ -88,4 +88,12 @@ public class UserService {
     public User findUserById(String id){
         return dao.findUserById(Integer.parseInt(id));
     }
+
+    public boolean registerUser(int userId, String nickname, String password) {
+        return dao.registerUser(userId,nickname,password);
+    }
+
+    public User loginUser(String userId, String password) {
+        return dao.loginUser(Integer.parseInt(userId),password);
+    }
 }

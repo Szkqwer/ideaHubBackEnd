@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -25,7 +26,14 @@ public class LikeArticle extends HttpServlet{
         // request.getParameter此方法要求前端提交参数时的编码格式为application/x-www-form-urlencoded
         // 如果前端提交参数时的编码格式为application/json或multipart/form-data则不能被识别
         String articleID = req.getParameter("articleId");
-        String likeUserID = req.getParameter("likeUserId");
+
+//        String likeUserID = req.getParameter("likeUserId");
+        HttpSession session = req.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String likeUserID=String.valueOf(tempUser.getUserID());
+
+
+
         // 查询用户
         UserService userService = new UserService();
         User likeUser = userService.findUserById(likeUserID);

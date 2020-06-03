@@ -128,4 +128,26 @@ public class UserDao {
 
         return num;
     }
+
+    public boolean registerUser(int userID, String nickname, String password) {
+
+        try {
+            String sql="insert into users(userID,nickname,password)  values( ?, ?, ?)";
+            return template.update(sql,userID,nickname,password)>0;
+        } catch (DataAccessException e) {
+            return false;
+        }
+
+    }
+
+    public User loginUser(int userID, String password) {
+        User user=null;
+        try {
+            String sql="select * from users where userID = ? and password = ?";
+            user=template.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),userID,password);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

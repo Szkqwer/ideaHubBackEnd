@@ -2,6 +2,7 @@ package whu.web.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import whu.beans.ResultInfo;
+import whu.beans.User;
 import whu.service.HubService;
 import whu.service.UserService;
 
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/hubPage/markHub")
@@ -19,11 +21,14 @@ public class MarkHubServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String hubID = request.getParameter("hubId");
-        String userID = request.getParameter("userId");
+        String circleID = request.getParameter("circleId");
+        HttpSession session = request.getSession();
+        User user=(User) session.getAttribute("user");
+        String userID=String.valueOf(user.getUserID());
+
         HubService service=new HubService();
         ResultInfo info=new ResultInfo();
-        boolean flag=service.markhub(hubID,userID);
+        boolean flag=service.markhub(userID,circleID);
         if (flag){
             info.setCode(1);
             info.setMsg("收藏成功");

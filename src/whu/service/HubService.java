@@ -25,60 +25,45 @@ public class HubService {
         return hub;
     }
 
-    public boolean joinRequest(String hubId, String userId) {
-        int num=0;
+    public boolean joinRequest(String circleID, String userId) {
         try {
-            num=dao.joinRequest(Integer.parseInt(hubId),Integer.parseInt(userId));
+            return dao.joinRequest(Integer.parseInt(circleID),Integer.parseInt(userId))>0;
         } catch (NumberFormatException e) {
             e.printStackTrace();
-        }
-        if (num==0){
             return false;
-        }else {
-            return true;
-        }
-    }
-
-    public boolean report(String hubId,String userId,String report){
-        int num=0;
-        try {
-            num=dao.report(Integer.parseInt(hubId),Integer.parseInt(userId),report);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        if (num==0){
-            return false;
-        }else {
-            return true;
         }
 
     }
-    public boolean markhub(String userId,String hubId){
-        int num=0;
+
+    public boolean report(String circleID,String userId,String report){
         try {
-            num=dao.markhub(Integer.parseInt(hubId),Integer.parseInt(userId));
+            return dao.report(Integer.parseInt(circleID),Integer.parseInt(userId),report)>0;
         } catch (NumberFormatException e) {
             e.printStackTrace();
-        }
-        if (num==0){
             return false;
-        }else {
-            return true;
         }
 
 
     }
-    public boolean shareHub( String userId, String targetId,int sign) {
-        int num=0;
+    public boolean markhub(String userId,String circleID){
         try {
-            num=dao.shareHub(Integer.parseInt(userId),Integer.parseInt(targetId),sign);
+            return dao.markhub(Integer.parseInt(circleID),Integer.parseInt(userId))>0;
         } catch (NumberFormatException e) {
             e.printStackTrace();
-        }
-        if (num==0){
             return false;
-        }else {
-            return true;
         }
+
+
+
+    }
+    public boolean shareHub( String userId, String circleId,String targetId) {
+
+        try {
+            return dao.shareHub(Integer.parseInt(userId),Integer.parseInt(circleId),Integer.parseInt(targetId))>0;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 }

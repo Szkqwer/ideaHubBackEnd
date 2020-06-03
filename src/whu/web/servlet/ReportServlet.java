@@ -12,23 +12,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/hubPage/report")
 public class ReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String hubID=request.getParameter("hubId");
-        String userID = request.getParameter("userId");
+        String circleID=request.getParameter("circleId");
+        HttpSession session = request.getSession();
+        User user=(User) session.getAttribute("user");
+        String userID=String.valueOf(user.getUserID());
         String report =request.getParameter("report");
 
         HubService service=new HubService();
-        boolean hub=service.report(hubID,userID,report);
+        boolean flag=service.report(circleID,userID,report);
         ResultInfo info=new ResultInfo();
-        if (true){
+        if (flag){
             info.setCode(1);
-            info.setMsg("举报成功");
-            info.setData(hub);
+            info.setMsg("举报成功,请等待反馈消息");
         }else {
             info.setCode(0);
             info.setMsg("举报失败");

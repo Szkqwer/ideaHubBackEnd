@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -29,7 +30,12 @@ public class AddComment extends HttpServlet{
         String articleID = request.getParameter("articleId");
         String content = request.getParameter("content");
         String postParentID = request.getParameter("parentId");
-        String userID = request.getParameter("userId");
+
+
+//        String userID = request.getParameter("userId");
+        HttpSession session = request.getSession();
+        User tempUser = (User) session.getAttribute("user");
+        String userID=String.valueOf(tempUser.getUserID());
 
         // 查询文章
         ArticleService articleService = new ArticleService();

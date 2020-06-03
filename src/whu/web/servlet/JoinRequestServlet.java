@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -24,11 +25,15 @@ public class JoinRequestServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String articleID = request.getParameter("hubId");
-        String userID = request.getParameter("userId");
+        String circleID = request.getParameter("circleId");
+
+        HttpSession session = request.getSession();
+        User user=(User) session.getAttribute("user");
+        String userID=String.valueOf(user.getUserID());
+
         HubService service = new HubService();
         ResultInfo info = new ResultInfo();
-        boolean flag = service.joinRequest(articleID, userID);
+        boolean flag = service.joinRequest(circleID, userID);
         if (flag) {
             info.setCode(1);
             info.setMsg("申请已发送");

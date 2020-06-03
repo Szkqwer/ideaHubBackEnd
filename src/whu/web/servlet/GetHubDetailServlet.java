@@ -2,9 +2,11 @@ package whu.web.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import whu.beans.Article;
+import whu.beans.Circle;
 import whu.beans.Hub;
 import whu.beans.ResultInfo;
 import whu.service.ArticleService;
+import whu.service.CircleService;
 import whu.service.HubService;
 
 import javax.servlet.ServletException;
@@ -17,17 +19,16 @@ import java.io.IOException;
 @WebServlet("/hubPage/getHubDetail")
 public class GetHubDetailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String hubID = request.getParameter("hubId");
-        HubService service=new HubService();
+        String circleID = request.getParameter("circleId");
+        CircleService service=new CircleService();
         ResultInfo info=new ResultInfo();
-        Hub hub =service.getHubDetail(hubID);
-        System.out.println(hub.getSetupTime());
-        if (hub!=null){
-            //用户存在
+        Circle circle=new Circle();
+        circle=service.findCircleById(circleID);
+        if (circle!=null){
             info.setCode(1);
             info.setMsg("获取圈子详情成功");
             info.setCount(1);
-            info.setData(hub);
+            info.setData(circle);
         }else {
             info.setCode(0);
             info.setMsg("获取圈子详情失败");
@@ -37,7 +38,7 @@ public class GetHubDetailServlet extends HttpServlet {
         String json = mapper.writeValueAsString(info);
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(json); //字符流写回
-        System.out.println(json);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

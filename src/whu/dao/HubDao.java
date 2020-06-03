@@ -80,12 +80,12 @@ public class HubDao {
         return u;
     }
 
-    public int joinRequest(int hubID,int userID){
+    public int joinRequest(int circleID,int userID){
         String sql;
-        sql="insert into user_join_hub(hubID,userID) values(?, ?)";
+        sql="insert into user_join_circle(circleID,userID) values(?, ?)";
         int num=0;
         try {
-            num=template.update(sql,hubID,userID);
+            num=template.update(sql,circleID,userID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -93,40 +93,36 @@ public class HubDao {
 
     }
 
-    public int report(int hubID,int userID,String report){
+    public int report(int circleID,int userID,String report){
         String sql;
-        sql="insert into user_report(hubID,userID,report) values(?, ?, ?)";
+        sql="insert into user_report(circleID,userID,report) values(?, ?, ?)";
         int num=0;
         try {
-            num=template.update(sql,hubID,userID,report);
+            num=template.update(sql,circleID,userID,report);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return num;
     }
 
-    public int markhub(int hubID,int userID){
+    public int markhub(int circleId,int userID){
         String sql;
-        sql="insert into user_mark_hub(hubID,userID) values(?, ?)";
+        sql="insert into user_mark_circle(circleID,userID) values(?, ?)";
         int num=0;
         try {
-            num=template.update(sql,hubID,userID);
+            num=template.update(sql,circleId,userID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
         return num;
     }
 
-    public int shareHub(int hubID, int targetID, int sign) {
-        String sql;
-        if (sign==1){
-            sql="insert into user_share_hub(hubID, targetUserID) values(?, ?)";
-        }else {
-            sql="insert into user_share_hub(hubID, targetCircleID) values(?, ?)";
-        }
+    public int shareHub(int userID,int circleID, int targetID) {
+        String sql ="insert into user_share_circle(userID,circleID, targetUserID) values(?, ?, ?)";
+
         int num=0;
         try {
-            num=template.update(sql,hubID,targetID);
+            num=template.update(sql,userID,circleID,targetID);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
